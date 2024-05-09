@@ -1,0 +1,397 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 10px;
+    padding: 5px;
+    min-height: 100vh;  /* Ensure the container fills at least the full height of the viewport */
+    box-sizing: border-box; /* Includes padding in the height calculation */
+    margin-top: -6px;
+
+
+
+   
+}
+
+#map { 
+    height: 100vh; /* Set the map height to be viewport height */
+    width: 100%;
+    border-style: solid;
+    border-color: orange;
+    border-radius: 8px;
+
+
+    height: 840px;
+}
+
+
+#energy{
+    
+    margin-left: 20px;
+    background-color:  rgb(189, 101, 0);
+    border-color: orange;
+    border-style: solid;
+    border-radius: 25px;
+    width: 10px;
+    height: 8px;
+    margin-top: -5px;
+}
+
+#footprint{
+    margin-left: 20px;
+    background-color:  rgb(189, 101, 0);
+    border-color: orange;
+    border-style: solid;
+    border-radius: 25px;
+    width: 10px;
+    height: 8px;
+    margin-top: -5px;
+}
+
+
+
+
+
+.energybar{
+
+
+   
+    font-size: 10.5px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(189, 101, 0);
+    
+  
+  
+
+    margin-left: 20px;
+   
+    }
+    
+
+.footprintbar{
+    font-size: 10.5px;
+    margin-left: 20px;
+    color: rgb(189, 101, 0);
+}
+
+
+
+
+
+
+
+
+
+
+.grid-container, .info-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto;
+    gap: 14px;
+    padding: 10px;
+    border-style: solid;
+    border-color: rgb(245, 138, 7);
+    border-radius: 8px;
+    min-width: 333px; /* Minimum width of the container */
+    max-width: 500px; /* Maximum width of the container */
+    align-content: start; /* Align grid items to the top of the container */
+    
+
+    max-height: 820px;
+
+    margin-right: -2.5px;
+   
+}
+
+.character-circle {
+    width: 72%;  /* Take up 100% of the column width */
+    height: auto;  /* Height will adjust to maintain aspect ratio */
+    aspect-ratio: 1;  /* Keeps the width and height equal */
+    border-radius: 50%;
+    background-image: url('character.png');
+    background-size: cover;
+    background-position: center;
+    justify-self: center; /* Horizontally center in the grid */
+    margin-top: 20px; /* Adds space at the top */
+    grid-column: 1 / -1; /* Spans all columns for proper centering */
+
+    margin-bottom: 5px;
+
+    cursor: pointer;
+
+    margin-top: 4px;
+    margin-bottom: 25px;
+    margin-left: -88px;
+
+  
+
+
+}
+
+
+
+.grid-item {
+    height: 0;
+    padding-top: 100%;  /* Height is the same as the width */
+    border-style: dotted;
+    border-color: rgb(233, 128, 1);
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100%;  /* Full width of the column */
+   
+
+    margin-top: 3px;
+
+
+
+    
+}
+
+.filter-options {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+
+    
+
+    
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    padding: 18px;
+    border-style: solid;
+    border-radius: 8px;
+    border-color: orange;
+    overflow: auto; /* Adds scrolling to this section if content exceeds its height */
+
+
+    color: rgb(202, 131, 0);
+
+    height: 800px;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+#my-popup{
+    background-color: orange;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+
+
+
+        .right1{
+        grid-column: 1 / span 5;
+
+
+        border-style: solid;
+        border-color: transparent;
+        height: 210px;
+        width: 210px;
+        border-radius: 50%;
+      
+        
+  
+        margin-left: 33px;
+   
+
+        text-align: center;
+        opacity: 1;
+        background-size: 315px 315px;
+        background-repeat: no-repeat;
+        
+   
+
+        }
+
+
+        .right1:hover{
+            background-image: url(IMG_2347.PNG);
+            background-size: 325px 325px;
+            background-repeat: no-repeat;
+
+            
+           
+        }
+
+
+
+/* 
+        .right2{
+        grid-column: 1 / span 5;
+
+
+        border-style: solid;
+        border-color: orange;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+    
+        margin-left: 33px;
+        margin-top: 20px;
+   
+
+        text-align: center;
+        font-size: 130px;
+
+
+        } */
+
+
+
+
+
+
+
+
+
+
+.righttext {
+    /* background-color: rgba(153, 47, 47, 0.8); */
+    text-align: left;
+    /* padding: 20px 20px; */
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(189, 101, 0);
+    padding: 20px;
+
+    margin-top: 120px;
+
+    /* border-style: solid;
+    border-color: orange; */
+    /* height: 60px;
+    width: 60px; */
+    /* background-color: #bbb; */
+    /* border-radius: 50%; */
+
+    /* margin-left: 5px; */
+
+    }
+
+
+
+
+
+
+
+
+    .buttonorange{
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: rgb(233, 128, 1);
+        margin-top: 10px;
+      
+        border-style: solid;
+        border-color: rgb(233, 128, 1);
+        margin-left: 15px;
+        
+    }
+
+    .buttongrey{
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color:grey;
+        margin-top: 10px;
+       
+        border-style: solid;
+        border-color: grey;
+        margin-left: 15px;
+        
+    }
+
+    .buttonblack{
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: black;
+        margin-top: 10px;
+      
+        border-style: solid;
+        border-color: black;
+        margin-left: 15px;
+        
+    }
+
+    .buttonall{
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: whitesmoke;
+        margin-top: 10px;
+       
+        border-style: solid;
+        border-width: 1.px;
+        border-color: rgb(233, 128, 1);
+        margin-left: 10px;
+
+    }
+
+
+
+    #primarycolor{
+        size: 12px;
+        margin-left: 20px;
+        margin-top: 40px;
+    }
+
+
+
+    .leaflet-popup-content-wrapper {
+      
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 8px;
+       
+
+    }
+
+
+
+    #credit{
+        font-size: 8.5px;
+     
+    
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(189, 101, 0);
+      
+
+        margin-top: -20px;
+        margin-left: 20px;
+    
+        
+    
+    }
+
+
+    #bottom{
+        font-size: 7px;
+     
+    
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(189, 101, 0);
+      
+
+        margin-top: -23px;
+        margin-left: 255px;
+    
+        
+    
+    }

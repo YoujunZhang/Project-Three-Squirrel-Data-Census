@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Map of Data Points</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map { 
+            height: 840px; 
+            width: 55%;
+            margin-left: 370px; 
+            border-style: solid;
+            border-color: orange;
+            border-radius: 8px;
+            margin-top: -843px;
+
+
+        }
+
+        .popupinfo{
+            /* background-color: white; */
+            color: rgb(169, 169, 169);
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        .leaflet-popup-content-wrapper {
+            background-color: orange;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+
+
+        .grid-container {
+            height: 840px;
+            width: 24.2%;
+            margin-left: 0px;
+            border-style: solid;
+            border-color: rgb(245, 138, 7);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            grid-template-rows: auto auto;
+            /* grid-gap: 10px; */
+            /* background-color: #2196F3; */
+            /* background-color: rgb(254, 201, 210); */
+            
+            
+        }
+
+        .grid-container > div {
+        /* background-color: rgba(153, 47, 47, 0.8); */
+        text-align: center;
+        /* padding: 20px 20px; */
+        font-size: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        color: orange;
+
+        border-style: dotted;
+        border-color: rgb(233, 128, 1);
+        height: 60px;
+        width: 60px;
+        /* background-color: #bbb; */
+        border-radius: 50%;
+
+        margin-left: 5px;
+
+        background-image: url(IMG_2331.PNG);
+        background-repeat: no-repeat;
+        background-size: 60px;
+        opacity: 0.7;
+        
+
+        }
+
+        .itemcharacter{
+        grid-column: 1 / span 5;
+
+
+        border-style: solid;
+        border-color: rgb(233, 128, 1);
+        height: 220px;
+        width: 220px;
+        border-radius: 50%;
+        margin-top: 13px;
+        margin-bottom: 9px;
+        margin-left: 9px;
+   
+
+        text-align: center;
+        font-size: 130px;
+
+
+        background-image: url(IMG_2325.PNG);
+        background-repeat: no-repeat;
+        background-size: 223px;
+
+        cursor: pointer;
+     
+
+        }
+
+        .itemcharacter :hover{
+            opacity: 0;
+        }
+        
+
+
+        
+       .rightcontainer{
+            height: 840px;
+            width: 19.4%;
+            margin-left: 1202px;
+            margin-top: -843px;
+            border-style: solid;
+            border-color: rgb(245, 138, 7);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            grid-template-rows: auto auto;
+            /* grid-gap: 10px; */
+            /* background-color: #2196F3; */
+            
+        }
+
+
+        .energybar{
+
+        grid-column: 1 / span 5;
+
+        /* background-color: rgba(153, 47, 47, 0.8); */
+        text-align: left;
+        /* padding: 20px 20px; */
+        font-size: 11px;
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(189, 101, 0);
+        
+        /* color: grey; */
+
+
+        /* background-color: #bbb; */
+        
+
+        margin-left: 20px;
+        margin-top: 12px;
+        }
+
+
+        #energy{
+            width: 140px;
+            height: 8px;
+            border-style: solid;
+            border-radius: 25px;
+            margin-top: -12px;
+            margin-left: 130px;
+            background-color:  rgb(189, 101, 0);
+            border-color: orange;
+
+        }
+
+
+        #footprint{
+            width: 140px;
+            height: 8px;
+            border-style: solid;
+            border-radius: 25px;
+            margin-top: -10px;
+            margin-left: 130px;
+            background-color:        whitesmoke;
+            border-color: orange;
+        }
+
+
+
+        .footprintbar{
+
+        grid-column: 1 / span 5;
+        
+        text-align: left;
+        /* padding: 20px 20px; */
+        font-size: 11px;
+        font-family: 'Courier New', Courier, monospace;
+        /* color: grey; */
+        color: rgb(189, 101, 0);
+
+
+        /* background-color: #bbb; */
+        
+
+        margin-left: 20px;
+        margin-top: 5px;
+        }
+
+
+
+
+
+        .rightfilter{
+        /* background-color: rgba(153, 47, 47, 0.8); */
+        text-align: left;
+        /* padding: 20px 20px; */
+        font-size: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        /* color: grey; */
+
+
+        /* background-color: #bbb; */
+        
+
+        margin-left: -271px;
+        margin-top: 110px;
+        }
+
+
+
+        /* .filtercircle{ */
+
+        /* grid-row: 1 / span 5;
+        text-align: left; */
+        /* padding: 20px 20px; */
+        /* font-size: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        
+        border-style: solid;
+        border-color: orange;
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+
+        margin-left: 20px; */
+        
+        /* } */
+
+
+        .rightfilter2{
+
+        grid-column: 1 / span 5;
+      
+        
+        
+        margin-left: 20px;
+        margin-top: 5px;
+        
+   
+
+        text-align: left;
+        font-size: 10px;
+        font-family: 'Courier New', Courier, monospace;
+       
+     
+        }
+
+
+
+        .buttonorange{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: rgb(233, 128, 1);
+            margin-top: 104px;
+            margin-left: -120px;
+            border-style: solid;
+            border-color: rgb(233, 128, 1);
+            
+        }
+
+
+        .buttongrey{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color:grey;
+            margin-top: 104px;
+            margin-left: -100px;
+            border-style: solid;
+            border-color: grey;
+            
+        }
+
+        .buttonblack{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: black;
+            margin-top: 104px;
+            margin-left: -80px;
+            border-style: solid;
+            border-color: black;
+            
+        }
+
+
+
+
+        .orange{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: rgb(233, 128, 1);
+            margin-left: 170px;
+            margin-top: -10px;
+            border-style: solid;
+            border-color: rgb(233, 128, 1);
+            z-index: 9;
+           
+            
+        }
+
+        .highlightwhite{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: white;
+          
+            margin-left: -100px;
+            margin-top: -10px;
+            border-style: solid;
+            border-color: orange;
+            
+        }
+
+
+        .highlightgrey{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: grey;
+          
+            margin-left: -80px;
+            margin-top: -10px;
+            border-style: solid;
+            border-color: grey;
+            
+        }
+
+
+        .highlightblack{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background-color: black;
+        
+            margin-left: -60px;
+            margin-top: -10px;
+            border-style: solid;
+            border-color: black;
+            
+        }
+
+
+
+
+        .right1{
+        grid-column: 1 / span 5;
+
+
+        border-style: solid;
+        border-color: orange;
+        height: 220px;
+        width: 220px;
+        border-radius: 50%;
+        margin-top: 25px;
+        
+        margin-bottom: 12px;
+        margin-left: 33px;
+   
+
+        text-align: center;
+        font-size: 130px;
+
+        }
+
+        .right2{
+        grid-column: 1 / span 5;
+
+
+        border-style: solid;
+        border-color: orange;
+        height: 220px;
+        width: 220px;
+        border-radius: 50%;
+        /* margin-top: 130px; */
+        /* margin-bottom: 5px; */
+        margin-left: 33px;
+   
+
+        text-align: center;
+        font-size: 130px;
+
+
+        }
+
+        .rightclick{
+        grid-column: 1 / span 5;
+        border-style: solid;
+        border-color: orange;
+        height: 20px;
+        width: 20px;
+        border-radius: 25px;
+        margin-left: 33px;
+        margin-top: -200px;
+        text-align: center;
+        font-size: 130px;
+  
+
+        }
+
+
+
+
+        .righttext {
+        /* background-color: rgba(153, 47, 47, 0.8); */
+        text-align: left;
+        /* padding: 20px 20px; */
+        font-size: 9px;
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(189, 101, 0);
+        padding: 23px;
+
+        /* margin-top: 650px; */
+
+        /* border-style: solid;
+        border-color: orange; */
+        /* height: 60px;
+        width: 60px; */
+        /* background-color: #bbb; */
+        /* border-radius: 50%; */
+
+        /* margin-left: 5px; */
+
+        }
+
+        #title{
+            text-align: left;
+            font-size: 10.5px;
+            font-family: 'Courier New', Courier, monospace;
+            /* padding: 23px; */
+        }
+
+
+        #subtitle{
+            text-align: left;
+            font-size: 9.5px;
+            font-family: 'Courier New', Courier, monospace;
+            /* padding: 23px; */
+        }
+
+
+
+
+
+
+
+
+
+
+
+/* .markers.highlight {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+  height: 80px;
+  padding: 8px 15px;
+  width: auto;
+}
+
+.markers.highlight::after {
+  border-top: 9px solid #FFFFFF;
+}
+
+.markers.highlight .details {
+  display: flex;
+}
+
+.markers.highlight .icon svg {
+  width: 50px;
+  height: 50px;
+} */
+
+
+
+
+
+
+        
+
+
+    </style>
+
+
+</head>
+<body>
+    
+    <div class="grid-container" style="grid-auto-flow: row;">
+        <span class="itemcharacter"></span>
+        <div class="item1">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>
+        <div class="item4">4</div>
+        <div class="item5">5</div>
+        <div class="item6">6</div>
+        <div class="item7">7</div>
+        <div class="item8">8</div>
+        <div class="item9">9</div>
+        <div class="item10">10</div>
+        <div class="item11">11</div>
+        <div class="item12">12</div>
+        <div class="item13">13</div>
+        <div class="item14">14</div>
+        <div class="item15">15</div>
+        <div class="item16">16</div>
+        <div class="item17">17</div>
+        <div class="item18">18</div>
+        <div class="item19">19</div>
+        <div class="item20">20</div>
+        <div class="item21">21</div>
+        <div class="item22">22</div>
+        <div class="item23">23</div>
+        <div class="item24">24</div>
+        <div class="item25">25</div>
+        <div class="item26">26</div>
+        <div class="item27">27</div>
+        <div class="item28">28</div>
+        <div class="item29">29</div>
+        <div class="item30">30</div>
+        <div class="item31">31</div>
+        <div class="item32">32</div>
+        <div class="item33">33</div>
+        <div class="item34">34</div>
+        <div class="item35">35</div>
+
+        
+    </div>
+    
+    <div id="map">
+
+        <p id="demo"></p>
+
+    </div>
+
+    <div class="rightcontainer" style="grid-auto-flow: row;">
+        <div class="energybar">Energy</div>
+        <button id="energy"></button>
+
+        <div class="footprintbar">Footprint</div>
+        <button id="footprint"></button>
+
+        <div class="rightfilter">Primary Fur Color: </div>
+        <button class="buttonorange" onclick="filtermarker()">🌰</button>
+        <button class="buttongrey" onclick="filtermarker2()">🌰</button>
+        <button class="buttonblack" onclick="filtermarker3()">🌰</button>
+
+        <div class="rightfilter2">Highlight Fur Color: </div>
+        <button class="orange" onclick="filter()">🌰</button>
+        <button class="highlightwhite" onclick="filter()">🌰</button>
+        <button class="highlightgrey" onclick="filter()">🌰</button>
+        <button class="highlightblack" onclick="filter()">🌰</button>
+
+
+        <div class="filtercircle"></div>
+        <div class="right1"></div>
+        <div class="right2" id="myDIV"></div>
+        <button onclick="myFunction()" class="rightclick"></button>
+        <!-- <p class="rightclick" id="demo"></p> -->
+
+        <div class="righttext">
+            <a  href="https://www.thesquirrelcensus.com/" id="title">🐿️ 🔗 📓</a>
+            
+            <div id="subtitle">New York City 2018 Squirrel Census</div> 
+                <div>Fur Color Map: </div>  
+            <div>A multimedia science, design, and storytelling project focusing on the Eastern gray (Sciurus carolinensis). They count squirrels and present their findings to the public. This table contains squirrel data for each of the 3,023 sightings, including location coordinates, age, primary and secondary fur color, elevation, activities, communications, and interactions between squirrels and with humans.
+        </div>
+        </div>
+
+        </div>
+
+
+
+
+
+    <script>
+     
+
+
+
+        // Initialize the map on the "map" div with a given center and zoom
+        let map = L.map('map').setView([40.7826, -73.968285], 13);
+        let markers = [];
+
+    //     var popup = L.popup()
+    // .setLatLng([51.513, -0.09])
+    // .setContent("I am a standalone popup.")
+    // .openOn(map);
+
+        // Load and display a simple tile layer on the map without labels
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        // Function to add a colored marker to the map
+        function addMarker(lat, lon, color, popupInfo) {
+            // Define a map from fur colors to available marker icon colors
+            let colorMap = {
+                'Gray': 'grey',
+                'Cinnamon': 'orange',
+                'Black': 'black'
+            };
+//             var orangeIcon = new LeafIcon({iconUrl: 'IMG_2330.PNG'});
+//             L.icon = function (options) {
+//     return new L.Icon(options);
+// };
+            // Default to grey if color not found or not defined
+            let markerColor = colorMap[color] || 'grey';
+            let icon = new L.Icon({
+                // iconUrl: `https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers/img/marker-icon-2x-${markerColor}.png`,
+                iconUrl: 'IMG_2333.PNG',
+                iconSize: [45, 55],
+                iconAnchor: [12, 41], 
+    
+            });
+
+            let marker = new L.marker([lat, lon], {icon: icon});
+            marker.addTo(map);
+            markers.push(marker);
+            console.log(popupInfo);
+
+            marker.bindPopup("<b class = popupinfo>" + popupInfo + "</b><br>I am a popup.").openPopup();
+
+
+        }
+
+        // Fetch data from the API... MAKE SURE TO REPLACE WITH YOUR API ENDPOINT
+        fetch('https://data.cityofnewyork.us/resource/vfnx-vebw.json?$query=SELECT%20%60x%60%2C%20%60y%60%2C%20%60primary_fur_color%60%2C%20%60geocoded_column%60')
+            .then(function(response) {
+                return response.json(); // Parse JSON response
+            })
+            .then(function(data) {
+                // Process each item in the data array
+                data.forEach(function(item) {
+                    let lat = item.y;
+                    let lon = item.x;
+                    let popUpInfo = item.primary_fur_color;
+                    let furColor = item.primary_fur_color ? item.primary_fur_color.charAt(0).toUpperCase() + item.primary_fur_color.slice(1).toLowerCase() : 'Gray'; // Capitalize first letter
+                    addMarker(lat, lon, furColor, popUpInfo); // Add colored marker to map
+
+                });
+            })
+            .catch(function(error) {
+                console.error('Error loading data: ' + error);
+            });
+
+
+
+
+        //make only one color marker shows//
+        function filtermarker(){
+            markers.forEach(function(item){console.log(item);
+                // if(item.icon.iconUrl.includes("Gray"))
+               
+                map.removeLayer(item);
+                
+            });
+
+
+
+
+        // function filtermarker(){
+        //     var myMarkers = document.getElementById('Marker');
+        //     var displaySetting = myMarkers.style.display;
+
+        //     var clockButton = document.getElementsByClassName('buttonorange');
+
+        //     if(displaySetting == 'grid'){
+        //         myMarkers.style.display = 'none';
+        //         buttonorange.innerHTML = 'Show marker';
+        //     }
+        //     else{
+        //         myMarkers.style.display = 'grid';
+        //         buttonorange.innerHTML = 'Hide marker';
+        //     }
+        // }
+
+        }
+
+
+
+        
+        
+        function myFunction() {
+  document.getElementById("myDIV").style.backgroundColor = "lightblue";
+}
+
+
+
+
+
+    </script>
+</body>
+</html>
